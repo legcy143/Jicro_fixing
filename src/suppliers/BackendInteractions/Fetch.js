@@ -33,7 +33,7 @@ const useFetch = create(
               latitude: coords.latitude,
               longitude: coords.longitude,
               limit: 40,
-              radius: 5000,
+              radius: 50,
               category: category ? category?.toLowerCase():"",
               subCategory: sub_category ? sub_category?.toLowerCase():"",
             };

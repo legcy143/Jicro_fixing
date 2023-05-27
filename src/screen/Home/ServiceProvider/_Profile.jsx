@@ -129,7 +129,7 @@ const _Profile = ({ navigation }) => {
     <>
       <View className={`bg-[${main.primary}] w-full rounded-b-3xl`}>
         <Text
-          className={`text-white text-6xl font-black text-center mt-1 mb-[-10px]`}
+          className={`text-white text-5xl font-black text-center mt-1 mb-[-10px] p-3`}
         >
           Jicro
         </Text>
@@ -236,25 +236,29 @@ const _Profile = ({ navigation }) => {
                 return item;
               }, [])}
               dropdownStyle={{
-                borderRadius: 5,
+                borderRadius: 12,
                 borderBottomColor: main.primary,
               }}
               buttonStyle={{
                 width: "100%",
                 marginTop: 10,
-                borderRadius: 12,
-                backgroundColor: main.primary,
+                borderRadius: 10,
+                borderWidth: 1.5,
+                borderStyle:"solid",
+                borderColor: "#d1d1d1",
+                // backgroundColor: main.primary,
               }}
               buttonTextStyle={{
-                fontWeight: 700,
-                color: "#fff",
-                fontSize: 22,
+                fontWeight: 500,
+                color: "#404040",
+                fontSize: 20,
+                textAlign: "left"
               }}
             />
             <Text className="text-gray-600 mt-1 ml-2 font-black text-lg">
               Add Any Type of Proof
             </Text>
-            <Text className="text-zinc-600 ml-2 font-normal text-xs mt-[-8px]">
+            <Text className="text-zinc-400 font-normal text-xs m-2 mt-[-1]">
               Example: Aadhar or Pan Card (Optional)
             </Text>
             {image.proof !== "" ? (
