@@ -295,8 +295,7 @@ const _Profile = ({ navigation }) => {
                   image.logo &&
                   address &&
                   name &&
-                  profession &&
-                  imageUploaded
+                  profession
                 ) {
                   verifyServiceProvider(waId, {
                     address,

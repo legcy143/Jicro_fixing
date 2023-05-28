@@ -7,7 +7,16 @@ import { main } from "../../../utils/colors";
 import Button from "../../components/Button";
 
 const ListedServices = ({navigation}) => {
+  
   const { getAllServices, allServicesData } = useFetch();
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      getAllServices();
+    });
+  
+    return unsubscribe;
+  }, [navigation, getAllServices]);
+  
   useEffect(() => {
     getAllServices();
   }, [navigation]);

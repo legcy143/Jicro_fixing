@@ -24,9 +24,6 @@ const AddService = ({ navigation }) => {
   const { data } = useFetch();
   const { setData, shouldRedirect, setRedirect } = useData();
   const { upload, uri, imageFor } = useUpload();
-  useEffect(() => {
-    if (shouldRedirect) navigation.navigate("Preview");
-  }, [shouldRedirect, navigation]);
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -42,23 +39,21 @@ const AddService = ({ navigation }) => {
   const [count, setCount] = useState(0);
   const [imagesUploaded, setImagesUploaded] = useState(false);
   const [check, setCheck] = useState(false);
-  // useEffect(() => {
-  //   if (check) {
-  //     setTitle("");
-  //     setPrice("");
-  //     setSubCategory("");
-  //     setNote("");
-  //     setImages([]);
-  //     setNotIncludedLists([]);
-  //     setIncludedLists([]);
-  //     setIncluded(1);
-  //     // includedTextInputRef([]);
-  //     // notIncludedTextInputRef([]);
-  //     setNotIncluded(1);
-  //     setCount(0);
-  //     setImagesUploaded(false);
-  //   }
-  // }, [check]);
+  const resetState = () => {
+    setTitle("");
+    setPrice("");
+    setSubCategory("");
+    setNote("");
+    setImages([]);
+    setIncluded(1);
+    setIncludedLists([]);
+    setNotIncluded(1);
+    setNotIncludedLists([]);
+    setCount(0);
+    setImagesUploaded(false);
+    setCheck(false);
+  };
+  
   const handleTextInputBlur = useCallback((index, text, type) => {
     if (type === "included") {
       setIncludedLists((includedLists) => {
@@ -74,7 +69,7 @@ const AddService = ({ navigation }) => {
       });
     }
   }, []);
-
+  
   const handleAddButtonPress = useCallback((type) => {
     if (type === "included") {
       setIncluded((included) => {
@@ -90,7 +85,7 @@ const AddService = ({ navigation }) => {
       });
     }
   }, []);
-
+  
   const handleRemoveButtonPress = useCallback((index, type) => {
     if (type === "included") {
       setIncludedLists((includedLists) => {
@@ -116,16 +111,16 @@ const AddService = ({ navigation }) => {
     }
   }, [imageFor]);
   useEffect(() => {
-    const checkEveryImagesUploaded = images.every((element) =>
-      element?.startsWith("https://res")
-    );
-    if (checkEveryImagesUploaded) {
-      setImagesUploaded(true);
-    } else {
-      setImagesUploaded(false);
-    }
+    const checkEveryImagesUploaded = images.every((element) => element?.startsWith("https://res"));
+    setImagesUploaded(checkEveryImagesUploaded);
   }, [images]);
-
+  useEffect(() => {
+    if (shouldRedirect) {
+      resetState();
+      navigation.navigate("Preview");
+    }
+  }, [shouldRedirect]);
+  
   return (
     <View className="w-full h-full bg-white">
       <UniversalHeader />
